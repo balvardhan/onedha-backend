@@ -18,7 +18,7 @@ export const registerRoutes = (app: Application) => {
     credentials: true
   }));
   app.use(json());
-  app.use(static_(path.join(__dirname, "public")));
+  app.use(static_(path.join(process.cwd(), "public")));
   
   for (const route of routes) {
     app.use(API_BASE + route.path, route.router);
