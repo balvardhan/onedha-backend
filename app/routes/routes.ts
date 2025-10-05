@@ -14,7 +14,9 @@ import { ResponseHandler } from "../utility/response_handler/response.handler";
 
 export const registerRoutes = (app: Application) => {
   app.use(cors({
-    origin: process.env.FRONTEND_URL || "https://onedha.vercel.app",
+    origin: process.env.NODE_ENV === 'production' 
+      ? (process.env.FRONTEND_URL || "https://onedha.vercel.app")
+      : ["http://localhost:5173", "http://localhost:3000", "http://localhost:4173"],
     credentials: true
   }));
   app.use(json());
